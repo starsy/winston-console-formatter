@@ -37,7 +37,7 @@ experiment('Colorizer.', () => {
 
   experiment('Custom.', () => {
     test('if not existed custom color then white', (done) => {
-      var colorizer:Colorizer = new Colorizer({ error: 'malinovyi' });
+      var colorizer = new Colorizer({ error: 'malinovyi' });
 
       assert.equal(colorizer.colorByLevel('error'), 'white');
 

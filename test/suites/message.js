@@ -11,7 +11,7 @@ var clc = require('cli-color');
 experiment('Message.', () => {
   experiment('Defaults.', () => {
     test('message without message and level.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.toString();
 
@@ -21,7 +21,7 @@ experiment('Message.', () => {
     });
 
     test('message with message but no level.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.setMessage('message').toString();
 
@@ -31,7 +31,7 @@ experiment('Message.', () => {
     });
 
     test('message without message but level.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.setLevel('error').toString();
 
@@ -43,7 +43,7 @@ experiment('Message.', () => {
 
   experiment('LowerCase', () => {
     test('eRrOr level lowerCased in Message.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       message.setLevel('eRrOr');
 
@@ -55,7 +55,7 @@ experiment('Message.', () => {
 
   experiment('Time.', () => {
     test('Timestamp is function.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.setTime(() => 'time').toString();
 
@@ -65,7 +65,7 @@ experiment('Message.', () => {
     });
 
     test('Timestamp is boolean = true', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.setTime(true).toString();
 
@@ -76,7 +76,7 @@ experiment('Message.', () => {
     });
 
     test('Timestamp is boolean = false', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
 
       var str = message.setTime(false).toString();
@@ -89,7 +89,7 @@ experiment('Message.', () => {
 
   experiment('From.', () => {
     test('From is white in green info.', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message
         .setColorizer(new Colorizer())
@@ -106,7 +106,7 @@ experiment('Message.', () => {
 
   experiment('Label.', () => {
     test('just label', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       var str = message.setLabel('label').toString();
 
@@ -118,7 +118,7 @@ experiment('Message.', () => {
 
   experiment('Color.', () => {
     test('no Colorizer, no colors', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       assert.equal(message.colorify(`string`), `string`);
 
@@ -128,7 +128,7 @@ experiment('Message.', () => {
 
   experiment('Color.', () => {
     test('with Colorizer all is colored by default in level color', (done) => {
-      var message: Message = new Message().setColorizer(new Colorizer());
+      var message = new Message().setColorizer(new Colorizer());
 
       assert.equal(message.colorify(`string`), clc.green(`string`));
 
@@ -138,7 +138,7 @@ experiment('Message.', () => {
 
   experiment('Color.', () => {
     test('with Colorizer all is colored by custom color', (done) => {
-      var message: Message = new Message().setColorizer(new Colorizer());
+      var message = new Message().setColorizer(new Colorizer());
 
       assert.equal(message.colorify(`string`, `red`), clc.red(`string`));
 
@@ -148,7 +148,7 @@ experiment('Message.', () => {
 
   experiment('Chaining', () => {
     test('methods returns this', (done) => {
-      var message: Message = new Message();
+      var message = new Message();
 
       assert.equal(message, message.setColorizer(new Colorizer()));
       assert.equal(message, message.setLabel(''));

@@ -1,6 +1,8 @@
-var utils = require('./utils');
-var Message = require('./message');
-var Colorizer = require('./colorizer');
+const utils = require('./utils');
+const yamlifyObject = require('yamlify-object');
+const yamlifyColors = require('yamlify-object-colors');
+const Message = require('./message');
+const Colorizer = require('./colorizer');
 
 function configuredFormatter ({ colors }) {
   /**
@@ -8,26 +10,26 @@ function configuredFormatter ({ colors }) {
    * @return {string}
    */
   return function formatter (options) {
-    var {
+    const {
       meta,
       level,
       label,
       message,
       timestamp
-      } = options;
+    } = options;
 
-    var {
+    const {
       from,
       stack, trace,
       message: objectMessage
-      } = meta;
+    } = meta;
 
     delete meta.from;
     delete meta.message;
     delete meta.stack;
     delete meta.trace;
 
-    var formattedMessage = new Message()
+    let formattedMessage = new Message()
       .setColorizer(new Colorizer(colors))
       .setTime(timestamp)
       .setLabel(label)
@@ -43,10 +45,9 @@ function configuredFormatter ({ colors }) {
   };
 }
 
-module.exports = {
-  config (options = {}, config = {}) {
-    return Object.assign({ timestamp: utils.getISOTime }, options, {
+exports.config = function config (options = {}, config = {}) {
+  return Object
+    .assign({ timestamp: utils.getISOTime }, options, {
       formatter: configuredFormatter(config)
     });
-  }
 };
